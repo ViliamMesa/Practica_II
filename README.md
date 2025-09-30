@@ -10,16 +10,23 @@ A través de una base de datos de vehículos, el sistema permite hacer búsqueda
 La práctica busca reforzar el uso de predicados lógicos, consultas con bagof/findall, y la generación de informes automáticos a partir de la base de hechos.
 
 Funcionalidades
+
 -Búsqueda por marca y tipo de vehículo.
+
 -Filtrado avanzado con múltiples criterios (marca, tipo, precio máximo).
+
 -Agrupación de vehículos por marca con información detallada.
+
 -Reportes financieros: totales, promedios y cantidad de unidades.
+
 -Selección optimizada bajo un límite de presupuesto.
+
 -Estadísticas por categoría: cantidad, promedio de precios, máximo y mínimo.
 
 Detección de:
 
 -Vehículo premium → el más costoso.
+
 -Mejor oferta → el más económico.
 
 Comparación entre marcas según el valor total de su inventario.
