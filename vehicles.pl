@@ -1,12 +1,12 @@
 % ============================================================================
-% SISTEMA INTELIGENTE DE GESTI√ìN DE CONCESIONARIO EL VEH√çCULO SO√ëADO
-% Pr√°ctica II - Lenguajes y Paradigmas de la Computaci√≥n
+% SISTEMA INTELIGENTE DE GESTI”N DE CONCESIONARIO EL VEHÕCULO SO—ADO
+% Pr·ctica II - Lenguajes y Paradigmas de la ComputaciÛn
 % ============================================================================
 
-% BASE DE DATOS DE VEH√çCULOS
+% BASE DE DATOS DE VEHÕCULOS
 vehiculo(renault, logan, sedan, 20000, 2024).
 vehiculo(mazda, cx50, suv, 44000, 2023).
-vehiculo(toyota, corolla_cross, suv, 30600, 2022).
+vehiculo(toyota, corolla_cross, suv, 29600, 2022).
 vehiculo(byd, yuan_up, suv, 30600, 2025).
 vehiculo(mazda, m3, sedan, 20400, 2020).
 vehiculo(ford, f150, pickup, 50100, 2021).
@@ -18,29 +18,29 @@ vehiculo(bmw, x5, suv, 45000, 2021).
 vehiculo(ford, ranger, pickup, 42000, 2021).
 
 % ============================================================================
-% VALIDACI√ìN Y CONSULTAS
+% VALIDACI”N Y CONSULTAS
 % ============================================================================
 
-% Verifica si un veh√≠culo est√° dentro del rango de presupuesto
+% Verifica si un vehÌculo est· dentro del rango de presupuesto
 dentro_presupuesto(Referencia, LimiteMax) :-
     vehiculo(_, Referencia, _, Costo, _),
     Costo =< LimiteMax.
 
-% B√∫squeda por marca con detalles completos
+% B˙squeda por marca con detalles completos
 buscar_por_marca(Marca, ListaCompleta) :-
     findall(
         vehiculo(Marca, Ref, Tipo, Precio, Ano),
         vehiculo(Marca, Ref, Tipo, Precio, Ano),
         ListaCompleta).
 
-% Agrupaci√≥n inteligente por marca usando bagof
+% AgrupaciÛn inteligente por marca usando bagof
 agrupar_marca(Marca, Agrupacion) :-
     bagof(
         info(Ref, Tipo, Precio, Ano),
         vehiculo(Marca, Ref, Tipo, Precio, Ano),
         Agrupacion).
 
-% Filtrado avanzado por m√∫ltiples criterios
+% Filtrado avanzado por m˙ltiples criterios
 filtrar_avanzado(Marca, Tipo, MaxPrecio, Resultado) :-
     bagof(
         auto(Ref, Precio, Ano),
@@ -51,7 +51,7 @@ filtrar_avanzado(Marca, Tipo, MaxPrecio, Resultado) :-
 % SISTEMA DE REPORTES FINANCIEROS
 % ============================================================================
 
-% Reporte principal con an√°lisis financiero
+% Reporte principal con an·lisis financiero
 reporte_completo(Marca, Tipo, Presupuesto, Analisis) :-
     findall(
         [Ref, Precio, Ano],
@@ -75,12 +75,12 @@ sumar_inventario([[_, Precio, _]|Cola], Total) :-
 % Contador de elementos
 contar_elementos(Lista, Cantidad) :- length(Lista, Cantidad).
 
-% C√°lculo de precio promedio
+% C·lculo de precio promedio
 calcular_promedio(_, 0, 0) :- !.
 calcular_promedio(Total, Cantidad, Promedio) :-
     Promedio is Total / Cantidad.
 
-% Reporte con restricci√≥n de inventario m√°ximo
+% Reporte con restricciÛn de inventario m·ximo
 reporte_con_limite(Marca, Tipo, Presupuesto, LimiteInventario, ReporteOptimizado) :-
     findall(
         [Ref, Precio, Ano],
@@ -97,7 +97,7 @@ reporte_con_limite(Marca, Tipo, Presupuesto, LimiteInventario, ReporteOptimizado
 ordenar_por_costo(Vehiculos, Ordenados) :-
     sort(2, @=<, Vehiculos, Ordenados).
 
-% Selecci√≥n acumulativa hasta el l√≠mite
+% SelecciÛn acumulativa hasta el lÌmite
 seleccionar_hasta_limite([], _, Acum, [], Acum).
 seleccionar_hasta_limite([[Ref, Precio, Ano]|Resto], Limite, Acum, Seleccion, TotalFinal) :-
     NuevoAcum is Acum + Precio,
@@ -111,26 +111,26 @@ seleccionar_hasta_limite([[Ref, Precio, Ano]|Resto], Limite, Acum, Seleccion, To
 % CASOS DE PRUEBA
 % ============================================================================
 
-% PRUEBA 1: Toyota SUVs econ√≥micos (bajo $30,000)
+% PRUEBA 1: Toyota SUVs econÛmicos (bajo $30,000)
 prueba_toyota_economico(Resultado) :-
     findall(
         Referencia,
         (vehiculo(toyota, Referencia, suv, Precio, _), Precio < 30000),
         Resultado),
-    format('~nVeh√≠culos Toyota SUV bajo $30,000: ~w~n', [Resultado]).
+    format('~nVehÌculos Toyota SUV bajo $30,000: ~w~n', [Resultado]).
 
-% PRUEBA 2: Inventario Ford clasificado por tipo y a√±o
+% PRUEBA 2: Inventario Ford clasificado por tipo y aÒo
 prueba_ford_clasificado :-
     format('~n=== INVENTARIO FORD CLASIFICADO ===~n'),
     forall(
         bagof(Referencias, Precio^vehiculo(ford, Referencias, Tipo, Precio, Ano), Lista),
-        format('Tipo: ~w | A√±o: ~w | Referencias: ~w~n', [Tipo, Ano, Lista])).
+        format('Tipo: ~w | AÒo: ~w | Referencias: ~w~n', [Tipo, Ano, Lista])).
 
-% PRUEBA 3: An√°lisis de sedanes con l√≠mite presupuestario
+% PRUEBA 3: An·lisis de sedanes con lÌmite presupuestario
 prueba_sedanes_limitado(Analisis) :-
     findall(
-        [Ref, Precio, Anno],
-        vehiculo(_, Ref, sedan, Precio, Anno),
+        [Ref, Precio, Ano],
+        vehiculo(_, Ref, sedan, Precio, Ano),
         TodosSedanes),
     seleccionar_hasta_limite(TodosSedanes, 500000, 0, Seleccionados, Total),
     contar_elementos(Seleccionados, Cantidad),
@@ -141,16 +141,16 @@ prueba_sedanes_limitado(Analisis) :-
         limite_presupuestal(500000),
         ahorro(Ahorro)),
     Ahorro is 500000 - Total,
-    format('~n=== AN√ÅLISIS DE SEDANES ===~n'),
+    format('~n=== AN¡LISIS DE SEDANES ===~n'),
     format('Total invertido: $~w~n', [Total]),
-    format('Veh√≠culos seleccionados: ~w~n', [Cantidad]),
+    format('VehÌculos seleccionados: ~w~n', [Cantidad]),
     format('Ahorro disponible: $~w~n', [Ahorro]).
 
 % ============================================================================
 % CONSULTAS ADICIONALES AVANZADAS
 % ============================================================================
 
-% An√°lisis por categor√≠a con estad√≠sticas
+% An·lisis por categorÌa con estadÌsticas
 estadisticas_por_tipo(Tipo, Stats) :-
     findall(Precio, vehiculo(_, _, Tipo, Precio, _), Precios),
     length(Precios, Total),
@@ -167,7 +167,7 @@ estadisticas_por_tipo(Tipo, Stats) :-
         mas_barato(Minimo)
     ).
 
-% Veh√≠culo premium (m√°s costoso del inventario)
+% VehÌculo premium (m·s costoso del inventario)
 vehiculo_premium(Info) :-
     findall(
         [Precio, Marca, Ref, Tipo, Ano],
@@ -177,7 +177,7 @@ vehiculo_premium(Info) :-
     sort(1, @>=, Todos, [[P, M, R, T, A]|_]),
     Info = premium(marca(M), modelo(R), tipo(T), precio(P), ano(A)).
 
-% Oportunidad econ√≥mica (m√°s barato disponible)
+% Oportunidad econÛmica (m·s barato disponible)
 mejor_oferta(Info) :-
     findall(
         [Precio, Marca, Ref, Tipo, Ano],
@@ -208,14 +208,13 @@ comparar_marcas(Marca1, Marca2, Comparacion) :-
     Comparacion = ganador(Ganador).
 
 % ============================================================================
-% MEN√ö DE CONSULTAS R√ÅPIDAS
+% MEN⁄ DE CONSULTAS R¡PIDAS
 % ============================================================================
 ejecutar_pruebas :-
     format('~n+----------------------------------------------------------+~n'),
-    format('¬¶  SISTEMA DE GESTI√ìN DE CONCESIONARIO EL VEH√çCULO SO√ëADO  ¬¶~n'),
+    format('¶  SISTEMA DE GESTI”N DE CONCESIONARIO EL VEHÕCULO SO—ADO  ¶~n'),
     format('+----------------------------------------------------------+~n'),
     prueba_toyota_economico(_),
     prueba_ford_clasificado,
     prueba_sedanes_limitado(_),
-    format('~n[Pruebas completadas exitosamente, ¬°sigue haciendo m√°s!]~n').
-
+    format('~n[Pruebas completadas exitosamente, °sigue haciendo m·s!]~n').
