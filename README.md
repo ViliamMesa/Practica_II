@@ -32,3 +32,5 @@ Detección de:
 
 Comparación entre marcas según el valor total de su inventario.
 Casos de prueba integrados para validar el funcionamiento.
+
+Ayudas: Chat GPT y Claude
