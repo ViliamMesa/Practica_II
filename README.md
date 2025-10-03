@@ -34,3 +34,5 @@ Comparación entre marcas según el valor total de su inventario.
 Casos de prueba integrados para validar el funcionamiento.
 
 Ayudas: Chat GPT y Claude
+
+Link del video con la explicación: https://youtu.be/cR3yX64wbc8
